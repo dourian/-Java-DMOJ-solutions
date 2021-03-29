@@ -79,7 +79,7 @@ public class ccc16s3PhonomenalReviews {
 			for (int j=0;j<loop;j++) {
 				int cur = q.poll();
 				for (int neighbour:adj[cur]) {
-					System.out.println(neighbour);
+					//System.out.println(neighbour);
 					if (!vis[neighbour]) {
 						q.add(neighbour);
 						vis[neighbour]=true;
