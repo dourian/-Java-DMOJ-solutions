@@ -1,43 +1,31 @@
 package olympiads;
 
+import java.util.*;
+import java.io.*;
+
 /*
  * Dorian Chen
- * Feb 7 2021
- * https://dmoj.ca/problem/ccc15j5
- * DP
+ * May 1, 2021
+ * ECOO
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.util.StringTokenizer;
-
-public class ccc15j5piday {
+public class manyMessages {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 	static StringTokenizer st;
-	static int [][][] dp;
+
 	public static void main(String[] args) throws IOException {
-		int n = readInt();
-		int k = readInt();
-		dp = new int [n+1][k+1][n+1];
-		if (n==k)System.out.println(1);
-		else {
-			way(n,k,1);
-			System.out.println(dp[n][k][1]);
+		int s = readInt(), in = readInt(), t = readInt();
+		for (int i=0;i<3;i++) {
+			s+=in;
+			if (s>=t) {
+				System.out.print(s);
+				return;
+			}
 		}
+		System.out.print("Who knows...");
 	}
-	public static int way (int n, int k, int m) {
-		if (dp[n][k][m] != 0) return dp[n][k][m];
-		if (k==1) return dp[n][k][m]=1;
-		for (int i = m;i<=n/k;i++) {
-			dp[n][k][m] += way(n-i,k-1,i);
-		}
-		return dp[n][k][m];
-	}
+
 	static String next() throws IOException {
 		while (st == null || !st.hasMoreTokens())
 			st = new StringTokenizer(br.readLine().trim());

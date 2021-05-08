@@ -1,42 +1,36 @@
 package olympiads;
 
-/*
- * Dorian Chen
- * Feb 7 2021
- * https://dmoj.ca/problem/ccc15j5
- * DP
- */
+import java.util.*;
+import java.io.*;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.util.StringTokenizer;
-
-public class ccc15j5piday {
+public class ecoo21p3QuintessentialQuestions {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 	static StringTokenizer st;
-	static int [][][] dp;
+
 	public static void main(String[] args) throws IOException {
-		int n = readInt();
-		int k = readInt();
-		dp = new int [n+1][k+1][n+1];
-		if (n==k)System.out.println(1);
-		else {
-			way(n,k,1);
-			System.out.println(dp[n][k][1]);
+		int N = readInt(), M = readInt(), K = readInt();
+		edge [] best = new edge [N+1];
+		Arrays.fill(best, new edge(-1,-1) );
+		for (int i=0;i<K;i++) {
+			int A,B,C;
+			A = readInt(); B =readInt(); C = readInt();
+			if (best[B].w<C) {
+				best[B]=new edge(A,C);
+			}
+		}
+		for (int i=1;i<=N;i++) {
+			System.out.print(best[i].v+" ");
 		}
 	}
-	public static int way (int n, int k, int m) {
-		if (dp[n][k][m] != 0) return dp[n][k][m];
-		if (k==1) return dp[n][k][m]=1;
-		for (int i = m;i<=n/k;i++) {
-			dp[n][k][m] += way(n-i,k-1,i);
+	static class edge implements Comparable <edge> {
+		int v,w;
+		edge(int f,int s) {
+			v = f; w = s;
 		}
-		return dp[n][k][m];
+		public int compareTo (edge x) { 
+			return Integer.compare(w, x.w);
+			}
 	}
 	static String next() throws IOException {
 		while (st == null || !st.hasMoreTokens())

@@ -1,43 +1,50 @@
 package olympiads;
 
+import java.util.*;
+import java.io.*;
+
 /*
  * Dorian Chen
- * Feb 7 2021
- * https://dmoj.ca/problem/ccc15j5
+ * Apr. 24, 2021
+ * https://dmoj.ca/problem/ioi94p1
  * DP
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.util.StringTokenizer;
-
-public class ccc15j5piday {
+public class IOI94p1TheTriangle {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 	static StringTokenizer st;
-	static int [][][] dp;
+
 	public static void main(String[] args) throws IOException {
 		int n = readInt();
-		int k = readInt();
-		dp = new int [n+1][k+1][n+1];
-		if (n==k)System.out.println(1);
-		else {
-			way(n,k,1);
-			System.out.println(dp[n][k][1]);
+		int inputs = 0;
+		
+		int [][]dp = new int [n+1][n+1];
+		for (int i=0;i<=n;i++)Arrays.fill(dp[i], -1);
+		for (int i=0;i<n;i++) {
+			inputs++;
+			for (int k=0;k<inputs;k++) {
+				dp[i][k]=readInt();
+			}
 		}
-	}
-	public static int way (int n, int k, int m) {
-		if (dp[n][k][m] != 0) return dp[n][k][m];
-		if (k==1) return dp[n][k][m]=1;
-		for (int i = m;i<=n/k;i++) {
-			dp[n][k][m] += way(n-i,k-1,i);
+		inputs=n;
+		for (int i=n-2;i>=0;i--) {
+			inputs--;
+			for (int k=0;k<inputs;k++) {
+				if (dp[i][k]!=-1) {
+					dp[i][k]+=Math.max(dp[i+1][k],dp[i+1][k+1]);
+				}
+			}
 		}
-		return dp[n][k][m];
+//		for (int i=0;i<=n;i++) {
+//			for (int j=0;j<=n;j++) {
+//				System.out.print(dp[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+		System.out.println(dp[0][0]);
 	}
+
 	static String next() throws IOException {
 		while (st == null || !st.hasMoreTokens())
 			st = new StringTokenizer(br.readLine().trim());
