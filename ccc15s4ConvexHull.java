@@ -61,7 +61,6 @@ public class ccc15s4ConvexHull {
 			if (t>dp[n][h]) continue;
 			for (Pair adjn: adj[n]) {
 				int time = adjn.time, hull = adjn.hull, node = adjn.node;
-				
 				if (h+hull>=K) continue;
 				if (dp[node][h+hull]>t+time) {
 					dp[node][h+hull]=t+time;
@@ -69,7 +68,6 @@ public class ccc15s4ConvexHull {
 				}
 				
 			}
-			
 		}
 		int min=Integer.MAX_VALUE;
 		
