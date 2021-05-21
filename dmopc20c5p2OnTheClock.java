@@ -3,35 +3,38 @@ package olympiads;
 import java.util.*;
 import java.io.*;
 
-public class chrisCandy {
+/*
+ * Dorian Chen
+ * May 15, 2021
+ * https://dmoj.ca/problem/dmopc20c5p2
+ * "Simple" Math
+ */
+
+public class dmopc20c5p2OnTheClock {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 	static StringTokenizer st;
 
 	public static void main(String[] args) throws IOException {
-		long  k =readLong();
-		List <Long> l = new ArrayList <Long> ();
-		k+=1;
-		long sum=0;
-		for (long i=2, hi = k; i*i <=hi ;i++) {
-			while (k%(i*1.0)==0) {
-				l.add(i-1); k/=i; sum+=i-1;
+		long N = readLong(), M = readLong();
+		
+		System.out.println(N + M - gcd(N,M));
+		
+		for (int i=1;i<=N;i++) {
+			
+			long lo = (i-1)* M / N+1, hi = (i*M + N-1)/N;
+			
+			for (long j=lo;j<=hi;j++) {
+				
+				System.out.println(i + " " + j);
+				
 			}
 		}
-		if (k!=1) {
-			l.add(k-1); sum+=k-1;
-		}
-		if (sum>1e5) {
-			System.out.println("Sad Chris"); return;
-		}
-		System.out.println(sum);
-		for(int i=0; i<l.size(); i++) {
-			long num = l.get(i);
-			for(int j=0; j<num; j++)
-				System.out.print(i+1 + " ");
-		}
-		System.out.println();
 	}
+	static long gcd (long M , long N) {
+		return N==0? M: gcd(N, M%N);
+	}
+
 	static String next() throws IOException {
 		while (st == null || !st.hasMoreTokens())
 			st = new StringTokenizer(br.readLine().trim());

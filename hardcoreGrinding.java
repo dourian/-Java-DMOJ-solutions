@@ -3,34 +3,25 @@ package olympiads;
 import java.util.*;
 import java.io.*;
 
-public class chrisCandy {
+public class hardcoreGrinding {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static PrintWriter pr = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 	static StringTokenizer st;
-
 	public static void main(String[] args) throws IOException {
-		long  k =readLong();
-		List <Long> l = new ArrayList <Long> ();
-		k+=1;
-		long sum=0;
-		for (long i=2, hi = k; i*i <=hi ;i++) {
-			while (k%(i*1.0)==0) {
-				l.add(i-1); k/=i; sum+=i-1;
-			}
+		int n = readInt();
+		int [] m  = new int [(int)1e7+1];
+		Arrays.fill(m, 0);
+		for (int i=0;i<n;i++) {
+			int s = readInt(), f = readInt();
+			m[s]=m[s]+1;
+			m[f]=m[f]-1;
 		}
-		if (k!=1) {
-			l.add(k-1); sum+=k-1;
+		int max=0;
+		for (int i=1;i<(int)1e7;i++) {
+			m[i]+=m[i-1];
+			if (m[i]>max) max=m[i];
 		}
-		if (sum>1e5) {
-			System.out.println("Sad Chris"); return;
-		}
-		System.out.println(sum);
-		for(int i=0; i<l.size(); i++) {
-			long num = l.get(i);
-			for(int j=0; j<num; j++)
-				System.out.print(i+1 + " ");
-		}
-		System.out.println();
+		System.out.println(max);
 	}
 	static String next() throws IOException {
 		while (st == null || !st.hasMoreTokens())
