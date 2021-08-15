@@ -20,14 +20,14 @@ public class UCC23p5woodcuttingGame {
 		int h1, h2, w1, w2;
 		
 	}
-	public static int fun (int h1, int w1, int h2, int w2) {
-		if (dp[h1][w1][h2][w2] !=1) return dp[h1][w1][h2][w2]=0;
-		if (h1==1 && w1==1 && h2==1 && w2==1 ) return dp[h1][w1][h2][w2]=0;
-		int ret =0;
-		
-		//for (int i=1;i<h1;i++) ret |=((!fun(1,w1,h1-i,w1)) | (!fun (i,w1,h2,w2)) );
-		
-	}
+//	public static int fun (int h1, int w1, int h2, int w2) {
+//		if (dp[h1][w1][h2][w2] !=1) return dp[h1][w1][h2][w2]=0;
+//		if (h1==1 && w1==1 && h2==1 && w2==1 ) return dp[h1][w1][h2][w2]=0;
+//		int ret =0;
+//		
+//		//for (int i=1;i<h1;i++) ret |=((!fun(1,w1,h1-i,w1)) | (!fun (i,w1,h2,w2)) );
+//		
+//	}
 
 	static String next() throws IOException {
 		while (st == null || !st.hasMoreTokens())
