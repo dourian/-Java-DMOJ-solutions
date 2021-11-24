@@ -11,9 +11,13 @@ public class dmopc20c3p5TowerOfPower {
 	public static void main(String[] args) throws IOException {
 		int N = readInt(), M = readInt();
 		
+		int [] a = new int [N];
+		
 		for (int i=0;i<N;i++) {
 			int x = readInt();
+			a[i]=x;
 		}
+		System.out.println((long)Math.pow(a[0], Math.pow(a[1], a[2]))%M);
 	}
 
 	static String next() throws IOException {
